@@ -20,7 +20,7 @@ body {
 
     background-color: #ADD8E6; 
     height: 350px;
-    width: 650px;
+    width: 400px;
 
     display: flex;
     align-items: center;
@@ -49,7 +49,7 @@ body {
     background-color: #dbe4eb;
     border-style: solid;
     border-color: black;
-    border-width: 1px;
+    border-width: 2px;
 }
 
 .number-container {
@@ -76,14 +76,16 @@ body {
 
     max-width: 600px;
     grid-template-columns: repeat(4, 1fr);
-    flex: 1;
+
+    gap: 3.5px;
+    
 }
 
 .number {
-    border-radius: 15px;
+    text-align: center;
     height: 50px;
     width: 50px;
-    background-color: white;
+    background-color: #dbe4eb;
     border-style: solid;
     border-color: black;
     border-width: 2px;
@@ -91,10 +93,10 @@ body {
 }
 
 .number-l {
-    border-radius: 15px;
+    text-align: center;
     height: 50px;
     width: 100px;
-    background-color: white;
+    background-color: #dbe4eb ;
     border-style: solid;
     border-color: black;
     border-width: 2px;
