@@ -1,5 +1,7 @@
 p {
     font-size: large;
+    margin: 0;
+    padding: 0;
 }
 
 html, body {
@@ -19,7 +21,7 @@ body {
     background-color: #dbe4eb;
 }
 
-.container {
+#container {
     padding-top: 25px;
     padding-bottom: 25px;
 
@@ -36,34 +38,40 @@ body {
 
     border-style: solid;
     border-color: black;
-    border-width: 1px;
+    border-width: 6px;
 }
 
-.output-container {
+#output-container {
     display: flex;
-    height: 100px;
     flex-direction: row;
     justify-content: center;
     align-items: center;
+    padding-bottom: 10px;
 }
 
-.output {
+#output {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-end;
+
     width: 300px;
     height: 70px;
-
     background-color: #dbe4eb;
     border-style: solid;
     border-color: black;
     border-width: 2px;
+
+    padding-right: 10px;
 }
 
-.number-container {
+#number-container {
     display: flex;
     flex: 1;
     flex-direction: row;
 }
 
-.left-op {
+#left-op {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -71,7 +79,7 @@ body {
     gap: 10px;
 }
 
-.right-op {
+#right-op {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 3.5px;  
@@ -87,7 +95,6 @@ body {
     border-style: solid;
     border-color: black;
     border-width: 2px;
-
 }
 
 .number-l {
@@ -100,6 +107,15 @@ body {
     border-style: solid;
     border-color: black;
     border-width: 2px;
-
     margin-right: 10px;
+}
+
+#text {
+    padding-bottom: 5px;
+    font-size: x-large;
+}
+
+#text-small {
+    padding-top: 5px;
+    font-size: medium;
 }
