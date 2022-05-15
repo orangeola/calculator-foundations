@@ -1,7 +1,7 @@
 const topOutPut = document.getElementById("text-small");
 const bottomOutPut = document.getElementById("text");
 
-bottomOutPut.textContent = "0";
+bottomOutPut.textContent = "";
 topOutPut.textContent = "";
 
 let firstNum = "";
@@ -12,7 +12,6 @@ const buttonList = document.querySelectorAll(".number");
 const buttonList2 = document.querySelectorAll(".number-l");
 for(let i = 0; i < buttonList.length; i++)
 {
-    console.log(buttonList[i].textContent);
     if(buttonList[i].textContent === "÷")
     {
         buttonList[i].addEventListener("click", () => {
@@ -41,21 +40,33 @@ for(let i = 0; i < buttonList.length; i++)
     {
         buttonList[i].addEventListener("click", () => {
             bottomOutPut.textContent = operate(firstNum, secondNum, operator);
+            operator = "";
+            firstNum = bottomOutPut.textContent;
+            secondNum = "temp";
         });
     }
     else
     {
         buttonList[i].addEventListener("click", () => {
-            if(firstNum !== "")
+            if(operator === "")
             {
-                secondNum = buttonList[i].textContent;
-                bottomOutPut.textContent = secondNum;
+                if(secondNum !== "")
+                {
+                    firstNum = "";
+                    secondNum = "";
+                }
+                firstNum += buttonList[i].textContent;
+                bottomOutPut.textContent = firstNum;
             }
             else
             {
-                firstNum = buttonList[i].textContent;
-                bottomOutPut.textContent = firstNum;
-            } 
+                if(secondNum === "temp")
+                {
+                    secondNum = "";
+                }
+                secondNum += buttonList[i].textContent;
+                bottomOutPut.textContent = secondNum;
+            }
     });}
 }
 
@@ -63,11 +74,31 @@ for(let i = 0; i < buttonList2.length; i++)
 {
     if(buttonList2[i].textContent === "+ / -")
     {
-
+        buttonList2[i].addEventListener("click", () => {
+        if(operator === "")
+        {
+            firstNum = firstNum * -1;
+            bottomOutPut.textContent = firstNum;
+        }
+        else
+        {
+            secondNum = secondNum * -1;
+            bottomOutPut.textContent = secondNum; 
+        }})
     }
     else if(buttonList2[i].textContent === "Backspace")
     {
-
+        buttonList2[i].addEventListener("click", () => {
+            if(operator === "")
+            {
+                firstNum = firstNum.slice(0, -1);
+                bottomOutPut.textContent = firstNum;
+            }
+            else
+            {
+                secondNum = secondNum.slice(0, -1);
+                bottomOutPut.textContent = secondNum; 
+            }})
     }
     else if(buttonList2[i].textContent === "Clear")
     {
