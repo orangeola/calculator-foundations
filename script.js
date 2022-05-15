@@ -47,7 +47,7 @@ for(let i = 0; i < buttonList.length; i++)
             topOutPut.textContent = firstNum + " " + operator + " " + secondNum + " " + "=";
             operator = "";
             firstNum = bottomOutPut.textContent;
-            secondNum = "temp";
+            secondNum = " ";
         });
     }
     else
@@ -65,7 +65,7 @@ for(let i = 0; i < buttonList.length; i++)
             }
             else
             {
-                if(secondNum === "temp")
+                if(secondNum === " ")
                 {
                     secondNum = "";
                 }
@@ -97,11 +97,19 @@ for(let i = 0; i < buttonList2.length; i++)
             if(operator === "")
             {
                 firstNum = firstNum.slice(0, -1);
+                if(firstNum.length === 0)
+                {
+                    firstNum = "0";
+                }
                 bottomOutPut.textContent = firstNum;
             }
             else
             {
                 secondNum = secondNum.slice(0, -1);
+                if(secondNum.length === 0)
+                {
+                    secondNum = "0";
+                }
                 bottomOutPut.textContent = secondNum; 
             }})
     }
