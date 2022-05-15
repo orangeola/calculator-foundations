@@ -23,6 +23,12 @@ minusButton.addEventListener("click", () => {
 backButton.addEventListener("click", () => {
     currentScreen = currentScreen.toString().slice(0, -1);
     bottomOutPut.textContent = currentScreen;
+    if(operator === "=")
+        {
+            currentScreen = "";
+            bottomOutPut.textContent = "";
+            operator = "";
+        }
 });
 
 clearButton.addEventListener("click", () => {
@@ -86,7 +92,6 @@ function executeOp(op)
             //operate on firstNum
             secondNum = currentScreen;
             currentScreen = operate(firstNum, secondNum, operator);
-            currentScreen = Math.round(currentScreen * 1000) / 1000;
             bottomOutPut.textContent = currentScreen;
             topOutPut.textContent += " " + secondNum + " " + "=";
             secondNum = "";
@@ -96,7 +101,6 @@ function executeOp(op)
         {
             //operate on secondnum
             currentScreen = operate(firstNum, currentScreen, operator);
-            currentScreen = Math.round(currentScreen * 1000) / 1000;
             bottomOutPut.textContent = currentScreen;
             firstNum = currentScreen;
             secondNum = " "; 
@@ -122,16 +126,16 @@ function operate(a, b, op)
 {
     switch(op) {
         case "+":
-            return Number(a) + Number(b); 
+            return Math.round((Number(a) + Number(b))* 1000) / 1000; 
         case "−":
-            return Number(a) - Number(b);
+            return Math.round((Number(a) - Number(b))* 1000) / 1000;
         case "×":
-            return Number(a) * Number(b);
+            return Math.round((Number(a) * Number(b))* 1000) / 1000;
         case "÷":
             if(Number(b) === 0)
             {
                 return "Black hole spawned";
             }
-            return Number(a) / Number(b);    
+            return Math.round((Number(a) / Number(b))* 1000) / 1000;   
     }
 }
