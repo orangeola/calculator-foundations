@@ -15,31 +15,36 @@ for(let i = 0; i < buttonList.length; i++)
     if(buttonList[i].textContent === "÷")
     {
         buttonList[i].addEventListener("click", () => {
-            operator = "divide";
+            operator = "÷";
+            topOutPut.textContent = firstNum + " " + "÷";
         });
     }
     else if(buttonList[i].textContent === "×")
     {
         buttonList[i].addEventListener("click", () => {
-            operator = "multiply";
+            operator = "×";
+            topOutPut.textContent = firstNum + " " + "×";
         });
     }
     else if(buttonList[i].textContent === "−")
     {
         buttonList[i].addEventListener("click", () => {
-            operator = "subtract";
+            operator = "−";
+            topOutPut.textContent = firstNum + " " + "−";
         });
     }
     else if(buttonList[i].textContent === "+")
     {
         buttonList[i].addEventListener("click", () => {
-            operator = "add";
+            operator = "+";
+            topOutPut.textContent = firstNum + " " + "+";
         });
     }
     else if(buttonList[i].textContent === "=")
     {
         buttonList[i].addEventListener("click", () => {
             bottomOutPut.textContent = operate(firstNum, secondNum, operator);
+            topOutPut.textContent = firstNum + " " + operator + " " + secondNum + " " + "=";
             operator = "";
             firstNum = bottomOutPut.textContent;
             secondNum = "temp";
@@ -114,19 +119,19 @@ for(let i = 0; i < buttonList2.length; i++)
 
 function operate(a, b, op)
 {
-    if(op === "add")
+    if(op === "+")
     {
         return Number(a) + Number(b);
     }
-    else if(op === "subtract")
+    else if(op === "−")
     {
         return Number(a) - Number(b);
     }
-    else if(op === "multiply")
+    else if(op === "×")
     {
         return Number(a) * Number(b);
     }
-    else if(op === "divide")
+    else if(op === "÷")
     {
         if(Number(b) === 0)
         {
