@@ -7,6 +7,106 @@ topOutPut.textContent = "";
 let firstNum = "";
 let secondNum = "";
 let operator = "";
+let currentScreen = firstNum;
+
+const buttonList = document.querySelectorAll(".number");
+for(let i = 0; i < buttonList.length; i++)
+{
+    if(!(Number.isInteger(Number(buttonList[i].textContent))))
+    {
+        if(buttonList[i].textContent === ".")
+        {
+            buttonList[i].addEventListener("click", () => {
+                if(!(currentScreen.includes(".")))
+                {
+                    currentScreen += ".";
+                    bottomOutPut.textContent = currentScreen;
+                }
+            });
+        }
+        else{
+            buttonList[i].addEventListener("click", () => {
+                executeOp(buttonList[i].textContent)
+            });
+        }
+    }
+    else
+    {
+        buttonList[i].addEventListener("click", () => {
+            currentScreen += buttonList[i].textContent;
+            bottomOutPut.textContent = currentScreen;
+        });
+    }
+}
+
+function executeOp(op)
+{
+    if(firstNum !== "" && secondNum !== "")
+    {
+        if(op === "=")
+        {
+            //operate on firstNum
+            secondNum = currentScreen;
+            currentScreen = operate(firstNum, secondNum, operator);
+            bottomOutPut.textContent = currentScreen;
+            secondNum = "";
+        }
+        else
+        {
+            //operate on secondnum
+            currentScreen = operate(firstNum, currentScreen, operator);
+            console.log(currentScreen);
+            bottomOutPut.textContent = currentScreen;
+            firstNum = currentScreen;
+            secondNum = " "; 
+            operator = op;
+            currentScreen = secondNum;
+        }
+    }
+    else
+    {
+        operator = op;
+        firstNum = currentScreen;
+        currentScreen = secondNum;
+        secondNum = " ";
+    }
+}
+
+function operate(a, b, op)
+{
+    switch(op) {
+        case "+":
+            return Number(a) + Number(b); 
+        case "−":
+            return Number(a) - Number(b);
+        case "×":
+            return Number(a) * Number(b);
+        case "÷":
+            if(Number(b) === 0)
+            {
+                return "Black hole spawned";
+            }
+            return Number(a) / Number(b);    
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
 
 const buttonList = document.querySelectorAll(".number");
 const buttonList2 = document.querySelectorAll(".number-l");
@@ -125,26 +225,4 @@ for(let i = 0; i < buttonList2.length; i++)
     }
 }
 
-function operate(a, b, op)
-{
-    if(op === "+")
-    {
-        return Number(a) + Number(b);
-    }
-    else if(op === "−")
-    {
-        return Number(a) - Number(b);
-    }
-    else if(op === "×")
-    {
-        return Number(a) * Number(b);
-    }
-    else if(op === "÷")
-    {
-        if(Number(b) === 0)
-        {
-            return "Black hole spawned";
-        }
-        return Number(a) / Number(b);
-    }
-}
+*/
