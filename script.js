@@ -31,6 +31,7 @@ clearButton.addEventListener("click", () => {
     operator = "";
     currentScreen = firstNum;
     bottomOutPut.textContent = "";
+    topOutPut.textContent = "";
 });
 
 //set up event listeners on the rest of the buttons
@@ -49,7 +50,8 @@ for(let i = 0; i < buttonList.length; i++)
                 }
             });
         }
-        else{
+        else
+        {
             buttonList[i].addEventListener("click", () => {
                 if(currentScreen.length !== 0 && currentScreen !== " ")
                 {
@@ -61,8 +63,16 @@ for(let i = 0; i < buttonList.length; i++)
     else
     {
         buttonList[i].addEventListener("click", () => {
-            currentScreen += buttonList[i].textContent;
-            bottomOutPut.textContent = currentScreen;
+            if(operator === "=")
+            {
+                currentScreen = "";
+                operator = "";
+            }
+
+            if(currentScreen.length <= 15){
+                currentScreen += buttonList[i].textContent;
+                bottomOutPut.textContent = currentScreen;  
+            }
         });
     }
 }
@@ -76,26 +86,35 @@ function executeOp(op)
             //operate on firstNum
             secondNum = currentScreen;
             currentScreen = operate(firstNum, secondNum, operator);
+            currentScreen = Math.round(currentScreen * 1000) / 1000;
             bottomOutPut.textContent = currentScreen;
+            topOutPut.textContent += " " + secondNum + " " + "=";
             secondNum = "";
+            operator = op;
         }
         else
         {
             //operate on secondnum
             currentScreen = operate(firstNum, currentScreen, operator);
+            currentScreen = Math.round(currentScreen * 1000) / 1000;
             bottomOutPut.textContent = currentScreen;
             firstNum = currentScreen;
             secondNum = " "; 
             operator = op;
             currentScreen = secondNum;
+            topOutPut.textContent = firstNum + " " + operator;
         }
     }
     else
     {
-        operator = op;
-        firstNum = currentScreen;
-        currentScreen = secondNum;
-        secondNum = " ";
+        if(op !== "=")
+        {
+            operator = op;
+            firstNum = currentScreen;
+            currentScreen = secondNum;
+            secondNum = " ";
+            topOutPut.textContent = firstNum + " " + operator;  
+        }
     }
 }
 
